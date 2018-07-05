@@ -1,0 +1,71 @@
+.nb-scroll{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .item-list{
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        position: relative;
+        .item{
+            position: absolute;
+            width: 100%;
+            // > div {
+            //     position: absolute;
+            //     display: inline-flex;
+            //     width: 100%;
+            //     contain: layout;
+            // }
+            > div {
+                will-change:opacity;
+                transition-property: opacity;
+                transition-duration: 500ms;
+            }
+        }
+        .bottom{
+            position: absolute;
+            width: 100%;
+            padding: 0px 0px;
+            text-align: center;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+        }
+        
+    }
+    .flash-list{
+        width: 100%;
+        height: 0px;
+        overflow: hidden;
+        position: relative;
+        contain: layout;
+        top:-100000px;
+        position: absolute; 
+        visibility: hidden; 
+        z-index: -1000;
+
+    }
+
+    .model{
+        top:-1000px;
+        visibility: hidden;
+        position: absolute;
+        width: 100%;
+    }
+    .tombstone{
+        border-bottom: 1px solid #eee;
+        position: absolute;
+        width: 100%;
+        // > div {
+        //     padding: 5px;
+        // }
+    }
+    .runway{
+        width: 1px;
+        height: 1px;
+        position: absolute;
+    }
+}

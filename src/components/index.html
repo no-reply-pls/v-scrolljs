@@ -1,0 +1,33 @@
+<div class="nb-scroll">
+    <div class="model">
+        <div class="tombstone" ref="tombstone">
+            <slot name="tombstone" ></slot>
+        </div>
+    </div>
+    <!-- {{items}} -->
+    <div class="item-list">
+        <div class="runway" :style="{transform: 'translate3d(0, '+runway+'px, 0)'}"></div>
+        <div class="item" v-for="(item, index) in visibleItems" :style="{transform: `translate3d(0, ${item.top}px, 0)`}">
+            <div class="tombstone" :style="{opacity: +!item.completed}">
+                <slot name="tombstone"></slot>
+            </div>
+            <div :style="{opacity: + item.completed}">
+                <slot name="item" :data="item.data" :index="firstAttachedIndex+index"></slot>
+            </div>
+        </div>
+        <div class="bottom" ref="bottom" :style="{transform: `translate3d(0, ${runway-bottomHeight}px, 0)`}" v-show="completed && lastAttachedIndex === total">
+            <slot name="bottom">All loaded</slot>
+        </div>
+    </div>
+    <div class="flash-list" ref="flastList" v-if="itemHeight === 0">
+        <div class="item"
+        :index="index"
+        :key="index"
+        v-if="item.data && !item.completed"
+        v-for="(item, index) in items">
+            <div>
+                <slot name="item" :data="item.data"></slot>
+            </div>
+        </div>
+    </div>
+</div>

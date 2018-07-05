@@ -2,6 +2,8 @@
 
 > Infinite scroll list for Vue.js.
 
+## [Demo](https://no-reply-pls.github.io/)
+
 ## Installation
 
 ###

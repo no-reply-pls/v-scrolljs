@@ -1,6 +1,6 @@
 {
   "name": "v-scrolljs",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "Infinite scroll list for Vue.js",
   "author": "no-reply-pls <no-reply-pls@hotmail.com>",
   "main": "dist/static/js/v-scrolljs.js",

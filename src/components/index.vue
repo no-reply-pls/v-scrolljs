@@ -185,6 +185,11 @@ export default {
             const len = this.list.length
             const itemsNeeded = this.lastAttachedIndex - len
             if (itemsNeeded <= 0) return
+            if (this.lastAttachedIndex > this.total) {
+                this.lastAttachedIndex = this.total
+                this.items.splice(this.total, this.items.length - len + 1)
+                return
+            }
             this.loading = true
             await this.fetch()
             this.loading = false

@@ -181,22 +181,31 @@ export default {
             }
         },
         async loadItems () {
+            // console.lot(this.items)
             if (this.loading || !this.fetch) return
             const len = this.list.length
             const itemsNeeded = this.lastAttachedIndex - len
             if (itemsNeeded <= 0) return
-            if (this.lastAttachedIndex > this.total) {
+
+            const itemLen = this.items.length
+            if (itemLen >= this.total) {
                 this.lastAttachedIndex = this.total
-                this.items.splice(this.total, this.items.length - len + 1)
+                this.items.splice(this.total, itemLen - this.total)
+                console.log('.........')
                 return
             }
+
             this.loading = true
-            await this.fetch()
-            this.loading = false
-            if (!this.completed) {
-                this.recalculateItemHeight(this.firstAttachedIndex, this.lastAttachedIndex)
+            try {
+                await this.fetch()
+                if (!this.completed) {
+                    this.recalculateItemHeight(this.firstAttachedIndex, this.lastAttachedIndex)
+                }
+                this.loadItems()
+            } catch (error) {
+                console.log(error)
             }
-            this.loadItems()
+            this.loading = false
         },
 
         addTombstone () {
@@ -240,7 +249,7 @@ export default {
                     this.calculateTop()
                     for (let i = firstAttachedIndex; i < lastAttachedIndex; i++) {
                         const item = this.items[i]
-                        if (item.realHeight) {
+                        if (item.realHeight && item.data) {
                             item.completed = 1
                         }
                     }
